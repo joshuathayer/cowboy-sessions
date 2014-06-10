@@ -1,0 +1,16 @@
+{application, cowboy_sessions,
+ [
+  {description, "Sessions and authentication for cowboy."},
+  {vsn, "1"},
+  {modules, [
+             cowboy_sessions,
+             cowboy_authentication
+            ]},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  crypto
+                 ]},
+  {env, []}
+ ]}.

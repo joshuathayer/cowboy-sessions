@@ -1,0 +1,7 @@
+ebin/*
+*.beam
+deps/*
+rel/cowboy-sessions
+.concrete/DEV_MODE
+deps.plt
+.eunit
