@@ -125,8 +125,7 @@ put_session_on_request(Req) ->
                    cowboy_req:set_meta(session, Session2, Req2)
            end,
 
-    Req4 = cowboy_req:set_meta(session, Session, Req3),
-    {SessionID, Req4}.
+    {SessionID, Req3}.
       
 -spec(handle_cookiecheck(cowboy_req:req()) -> cowboy_req:req()).
 handle_cookiecheck(Req) ->
