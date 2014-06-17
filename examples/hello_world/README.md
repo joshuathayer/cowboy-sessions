@@ -22,12 +22,39 @@ Example output
 
 ``` bash
 $ curl -i http://localhost:8080
+HTTP/1.1 302 Found
+connection: keep-alive
+server: Cowboy
+date: Tue, 17 Jun 2014 22:19:42 GMT
+content-length: 0
+set-cookie: SESSION_ID=04fc0f8a5b8e52ef298ef6bc7ad9bca4; Version=1; Path=/
+Location: /cookiecheck?path=%2F
+
+$ curl -i -b SESSION_ID=04fc0f8a5b8e52ef298ef6bc7ad9bca4 http://localhost:8080/cookiecheck?path=%2F
+HTTP/1.1 302 Found
+connection: keep-alive
+server: Cowboy
+date: Tue, 17 Jun 2014 22:20:02 GMT
+content-length: 0
+Location: /
+
+$ curl -i -b SESSION_ID=04fc0f8a5b8e52ef298ef6bc7ad9bca4 http://localhost:8080/
 HTTP/1.1 200 OK
 connection: keep-alive
 server: Cowboy
-date: Fri, 28 Sep 2012 04:10:25 GMT
-content-length: 12
+date: Tue, 17 Jun 2014 22:20:11 GMT
+content-length: 30
 content-type: text/plain
 
-Hello world!
+Hello, your visit count is: 1.
+
+$ curl -i -b SESSION_ID=04fc0f8a5b8e52ef298ef6bc7ad9bca4 http://localhost:8080/
+HTTP/1.1 200 OK
+connection: keep-alive
+server: Cowboy
+date: Tue, 17 Jun 2014 22:20:14 GMT
+content-length: 30
+content-type: text/plain
+
+Hello, your visit count is: 2.
 ```
