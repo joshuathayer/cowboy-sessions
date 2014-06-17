@@ -9,7 +9,8 @@
   {applications, [
                   kernel,
                   stdlib,
-                  crypto
+                  crypto,
+                  inets
                  ]},
   {env, []}
  ]}.

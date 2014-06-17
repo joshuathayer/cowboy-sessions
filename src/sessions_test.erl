@@ -149,7 +149,7 @@ redirect_3_test() ->
                 fun (Status, Headers, _Body, Req) ->
                         ?assert(Status =:= 302),
                         Loc = proplists:get_value(<<"Location">>, Headers),
-                        ?assert(Loc =:= <<"/cookiecheck?path=%2F">>),
+                        ?assert(Loc =:= <<"/cookiecheck?path=">>),
                         Req
                 end),
     cowboy_sessions:redirect_session(TestReq, []),

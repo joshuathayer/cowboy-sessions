@@ -76,12 +76,15 @@ session_data(Req, Key) ->
 redirect_session(Req, State) ->
     {_SessionID, Req2} = set_session_id(Req),
     {Path, Req3}       = cowboy_req:path(Req2),
+    io:format(standard_error, "Hello, path here is ~p.", [Path]),
     Path2              = case Path of
                              undefined -> <<"/">>;
                              <<"">>    -> <<"/">>;
                              _         -> Path
                          end,
+    io:format(standard_error, "And, path here is ~p.", [Path2]),
     Path3              = http_uri:encode(binary_to_list(Path2)),
+    io:format(standard_error, "Finally, path here is ~p.", [Path3]),
     Path4              = io_lib:format("/cookiecheck?path=~s", [Path3]),
     Path5              = list_to_binary(Path4),
     Req4               = cowboy_req:set_resp_header(<<"Location">>, Path5, Req3),
