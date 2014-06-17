@@ -1,13 +1,14 @@
 -module(cowboy_sessions).
 
 -export([session_id/1, set_session_id/1, on_request/1, on_response/4, update_session/3,
-         session_data/2, init/3, terminate/3, redirect_session/2]).
+         session_data/2, init/3, terminate/3, redirect_session/2,
+         ets_session_process/0]).
 
 -include_lib("eunit/include/eunit.hrl").
 
 -ifdef(EUNIT).
 -export([put_session_on_request/1, get_from_storage/1,
-         handle_cookiecheck/1, ets_session_process/0, start_ets/0]).
+         handle_cookiecheck/1,  start_ets/0]).
 -endif.
 
 %% TODO: make session IDs smarter (with checksum, eg)
