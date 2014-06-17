@@ -134,3 +134,12 @@ handle(Req, State) ->
             inner_handle(Req2, State)
     end.
 ```
+
+Tests
+-----
+
+Until I figure out how to get erlang.mk to run eunit tests, or move tests to common_tests, the existing eunit tests can be run with
+
+```
+erl -noshell -pa ebin -pa deps/*/ebin -eval "eunit:test(sessions_test, [verbose])" -s init stop
+```

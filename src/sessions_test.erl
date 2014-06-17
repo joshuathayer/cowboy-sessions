@@ -128,6 +128,34 @@ redirect_test() ->
     cowboy_sessions:redirect_session(TestReq, []),
     true.
 
+redirect_2_test() ->
+    TestReq = test_request_path_session(
+                <<"/">>,
+                "",
+                fun (Status, Headers, _Body, Req) ->
+                        ?assert(Status =:= 302),
+                        Loc = proplists:get_value(<<"Location">>, Headers),
+                        ?assert(Loc =:= <<"/cookiecheck?path=%2F">>),
+                        Req
+                end),
+    cowboy_sessions:redirect_session(TestReq, []),
+    true.
+
+redirect_3_test() ->
+    %% test case where don't have a path to redirect to...
+    TestReq = test_request_path_session(
+                <<>>,
+                "",
+                fun (Status, Headers, _Body, Req) ->
+                        ?assert(Status =:= 302),
+                        Loc = proplists:get_value(<<"Location">>, Headers),
+                        ?assert(Loc =:= <<"/cookiecheck?path=%2F">>),
+                        Req
+                end),
+    cowboy_sessions:redirect_session(TestReq, []),
+    true.
+
+
 cookiecheck_test() ->
     TestReq = test_cookiecheck_request_success(
                 fun (Status, _Headers, _Body, Req) ->
