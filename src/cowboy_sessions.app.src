@@ -1,7 +1,7 @@
 {application, cowboy_sessions,
  [
   {description, "Sessions for cowboy."},
-  {vsn, "1"},
+  {vsn, "0.1.0"},
   {modules, [
              cowboy_sessions
             ]},
