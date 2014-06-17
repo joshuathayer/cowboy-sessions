@@ -1,14 +1,13 @@
 -module(cowboy_sessions).
 
 -export([session_id/1, set_session_id/1, on_request/1, on_response/4, update_session/3,
-         session_data/2, init/3, terminate/3, redirect_session/2,
-         start_ets/0, ets_session_process/0]).
-
+         session_data/2, init/3, terminate/3, redirect_session/2]).
+         
 -include_lib("eunit/include/eunit.hrl").
 
 -ifdef(EUNIT).
 -export([put_session_on_request/1, get_from_storage/1,
-         handle_cookiecheck/1]).
+         handle_cookiecheck/1, start_ets/0, ets_session_process/0]).
 -endif.
 
 %% TODO: make session IDs smarter (with checksum, eg)
@@ -192,7 +191,7 @@ to_hex([H|T]) ->
 to_digit(N) when N < 10 -> $0 + N;
 to_digit(N) -> $a + N-10.
 
-%% an example session storage process. consider not using this in production.
+%% an example session storage process. testing.
 start_ets() ->
     ?MODULE = ets:new(?MODULE, [public, set, named_table]),
     {ok, ?MODULE}.
